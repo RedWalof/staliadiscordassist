@@ -1,0 +1,15 @@
+[project]
+name = "python-template"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+requires-python = ">=3.11"
+dependencies = [
+    "discord-ext-music==0.3.0",
+    "discord-py>=2.4.0",
+    "ffmpeg4discord==0.1.4",
+    "ffmpeg==1.4",
+    "flask>=3.0.1",
+    "opus20==1.0.1",
+    "yt-dlp>=2024.11.18",
+]
