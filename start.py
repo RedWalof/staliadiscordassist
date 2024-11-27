@@ -7,7 +7,7 @@ from discord import FFmpegPCMAudio
 from keep_alive import keep_alive
 
 load_dotenv()
-d
+
 # Variables d'environnement et paramètres
 TOKEN = os.getenv('Token_secret')
 PREFIX = "!"
