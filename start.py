@@ -74,7 +74,7 @@ async def play_youtube(vc):
                 vc.play(FFmpegPCMAudio('audio.mp3'), after=lambda e: print("Lecture terminée."))
                 
                 # Attendre la fin de la lecture de la piste
-                while vc.is_playing():
+
 
                 # Attendre 10 secondes avant de relancer la lecture
                 
