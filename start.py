@@ -61,15 +61,7 @@ async def connect_voice(guild_id: int, id_vocal: int):
 # Fonction pour lire une vidéo YouTube
 async def play_youtube(vc):
     # Options de téléchargement
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-        'outtmpl': 'audio',  # Sauvegarde le fichier audio sous 'audio.mp3'
-    }
+
 
     # Téléchargement de la vidéo
 
@@ -83,7 +75,7 @@ async def play_youtube(vc):
             await asyncio.sleep(1)
 
         # Supprimer le fichier audio après la lecture
-        os.remove('audio.mp3')
+
     else:
         print("Erreur : le fichier audio n'a pas été trouvé après le téléchargement.")
 
