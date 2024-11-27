@@ -65,16 +65,6 @@ async def play_youtube(vc):
 
     # Téléchargement de la vidéo
     # Options pour yt-dlp
-   os.remove("audio.mp3")
-    ydl_opts = {
-        'format': 'bestaudio/best',  # Télécharger la meilleure qualité audio
-        'postprocessors': [{
-            'key': 'FFmpegAudioConvertor',
-            'preferredcodec': 'mp3',  # Convertir en mp3
-            'preferredquality': '192',  # Qualité audio
-        }],
-        'outtmpl': os.path.join(download_path, 'audio.%(ext)s'),  # Sauvegarder le fichier sous le nom audio.mp3
-    }
     # Vérifier si le fichier audio existe avant de tenter de le jouer
     if os.path.exists('audio.mp3'):
         # Fonction qui redémarre la lecture après un délai
