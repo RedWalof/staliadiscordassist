@@ -51,6 +51,7 @@ async def connect_voice(guild_id: int, id_vocal: int):
             else:
                 await leave()
                 vc = await voice_channel.connect()
+                await asyncio.sleep(2)
                 await play_youtube(vc)
                 print(f"Connecté au salon vocal {voice_channel.name} sur le serveur {guild.name}.")
         else:
@@ -62,24 +63,27 @@ async def connect_voice(guild_id: int, id_vocal: int):
 async def play_youtube(vc):
     # Options de téléchargement
 
-
     # Téléchargement de la vidéo
-
 
     # Vérifier si le fichier audio existe avant de tenter de le jouer
     if os.path.exists('audio.mp3'):
-        # Lecture de l'audio dans le salon vocal
-        vc.play(FFmpegPCMAudio('audio.mp3'), after=lambda e: print("Lecture terminée."))
-        # Attendre que la lecture soit terminée
-        while vc.is_playing():
-            await asyncio.sleep(1)
+        # Fonction qui redémarre la lecture après un délai
+        async def play_audio():
+            while True:
+                # Lecture de l'audio dans le salon vocal
+                vc.play(FFmpegPCMAudio('audio.mp3'), after=lambda e: print("Lecture terminée."))
+                
+                # Attendre la fin de la lecture de la piste
+                while vc.is_playing():
 
-        # Supprimer le fichier audio après la lecture
-
+                # Attendre 10 secondes avant de relancer la lecture
+                await asyncio.sleep(30)
+                await play_audio()
     else:
         print("Erreur : le fichier audio n'a pas été trouvé après le téléchargement.")
 
-# Fonction pour vérifier si un salon vocal est vide ou non
+
+
 async def check_vocal_connect(server_id, vocal_id):
     guild = client.get_guild(server_id)
     if not guild:
