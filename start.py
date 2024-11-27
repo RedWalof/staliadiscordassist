@@ -26,7 +26,7 @@ client = commands.Bot(command_prefix=PREFIX, intents=intents)
 # Fonction de démarrage du bot
 @client.event
 async def on_ready():
-    print(f'Bot connecté en tant que {client.user.name}')
+    print(f'Bot connecté en tant que< {client.user.name}')
     for guild in client.guilds:
         print(f"Serveur connecté : {guild.name} (ID : {guild.id})")
     if not boucle.is_running():
