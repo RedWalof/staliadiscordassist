@@ -78,7 +78,7 @@ async def play_youtube(vc):
 
                 # Attendre 10 secondes avant de relancer la lecture
                 
-                await play_audio()
+                
     else:
         print("Erreur : le fichier audio n'a pas été trouvé après le téléchargement.")
 
