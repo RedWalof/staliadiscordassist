@@ -71,7 +71,7 @@ async def play_youtube(vc):
         async def play_audio():
             while True:
                 # Lecture de l'audio dans le salon vocal
-                vc.play(FFmpegPCMAudio('audio.mp3'), after=lambda e: print("Lecture terminée.")
+                vc.play(FFmpegPCMAudio('audio.mp3'), after=lambda e: print("Lecture terminée."))
                         
                 while vc.is_playing():
                    await asyncio.sleep(1)
