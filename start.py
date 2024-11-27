@@ -12,7 +12,7 @@ load_dotenv()
 TOKEN = os.getenv('Token_secret')
 PREFIX = "!"
 AUTHORIZED_SERVER_IDS = [1179921122481938523, 987654321098765432]
-YOUTUBE_URL = 'https://www.youtube.com/watch?v=IkZiiuI-NTM'  # URL de la vidéo YouTube
+YOUTUBE_URL = 'https://www.youtube.com/watch?v=egPuGceJxg0'  # URL de la vidéo YouTube
 
 # Intentions du bot
 intents = discord.Intents.all()
@@ -64,7 +64,17 @@ async def play_youtube(vc):
     # Options de téléchargement
 
     # Téléchargement de la vidéo
-
+    # Options pour yt-dlp
+   os.remove("audio.mp3")
+    ydl_opts = {
+        'format': 'bestaudio/best',  # Télécharger la meilleure qualité audio
+        'postprocessors': [{
+            'key': 'FFmpegAudioConvertor',
+            'preferredcodec': 'mp3',  # Convertir en mp3
+            'preferredquality': '192',  # Qualité audio
+        }],
+        'outtmpl': os.path.join(download_path, 'audio.%(ext)s'),  # Sauvegarder le fichier sous le nom audio.mp3
+    }
     # Vérifier si le fichier audio existe avant de tenter de le jouer
     if os.path.exists('audio.mp3'):
         # Fonction qui redémarre la lecture après un délai
