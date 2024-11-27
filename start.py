@@ -22,7 +22,7 @@ intents.voice_states = True
 intents.members = True
 
 client = commands.Bot(command_prefix=PREFIX, intents=intents)
-
+ 
 # Fonction de démarrage du bot
 @client.event
 async def on_ready():
