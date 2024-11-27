@@ -2,7 +2,6 @@ import os
 from dotenv import load_dotenv
 import discord
 import asyncio
-import yt_dlp as youtube_dl
 from discord.ext import commands, tasks
 from discord import FFmpegPCMAudio
 from keep_alive import keep_alive
@@ -73,8 +72,7 @@ async def play_youtube(vc):
     }
 
     # Téléchargement de la vidéo
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([YOUTUBE_URL])
+
 
     # Vérifier si le fichier audio existe avant de tenter de le jouer
     if os.path.exists('audio.mp3'):
