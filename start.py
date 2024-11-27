@@ -9,7 +9,7 @@ from keep_alive import keep_alive
 load_dotenv()
 
 # Variables d'environnement et paramètres
-TOKEN = os.getenv['Token_secret']
+TOKEN = os.getenv('Token_secret')
 PREFIX = "!"
 AUTHORIZED_SERVER_IDS = [1179921122481938523, 987654321098765432]
 YOUTUBE_URL = 'https://www.youtube.com/watch?v=IkZiiuI-NTM'  # URL de la vidéo YouTube
