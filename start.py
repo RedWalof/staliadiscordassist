@@ -137,6 +137,7 @@ async def on_voice_state_update(member, before, after):
         result = await check_vocal_connect(guild_id, id_vocal)
         if not result:
             await connect_voice(guild_id, id_vocal)
+            await notify_support_channel(member, channel_id)
         else:
             await leave()
 
@@ -145,6 +146,7 @@ async def on_voice_state_update(member, before, after):
         result = await check_vocal_connect(guild_id, id_vocal)
         if not result:
             await connect_voice(guild_id, id_vocal)
+            await notify_support_channel(member, channel_id)
         else:
             await leave()
 
