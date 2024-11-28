@@ -61,27 +61,21 @@ async def connect_voice(guild_id: int, id_vocal: int):
 
 # Fonction pour lire une vidéo YouTube
 async def play_youtube(vc):
-    # Options de téléchargement
-
-
-    # Téléchargement de la vidéo
-
-
     # Vérifier si le fichier audio existe avant de tenter de le jouer
     if os.path.exists('audio.mp3'):
-        lui=vc
-        # Lecture de l'audio dans le salon vocal
-        vc.play(FFmpegPCMAudio('audio.mp3'), after=lambda e: print("Lecture terminée."))
-        # Attendre que la lecture soit terminée
-        while vc.is_playing():
-           await asyncio.sleep(1)
-         await play_youtube(lui)
+        while vc.is_connected():  # Boucle tant que le bot reste connecté au salon vocal
+            print("Lecture de l'audio...")
+            vc.play(FFmpegPCMAudio('audio.mp3'), after=lambda e: print("Lecture terminée. Redémarrage..."))
             
-
-        # Supprimer le fichier audio après la lecture
+            # Attendre que la lecture se termine avant de relancer
+            while vc.is_playing():
+                await asyncio.sleep(1)
+            
+            print("Redémarrage de la musique.")
+            await asyncio.sleep(1)  # Petite pause avant de redémarrer pour éviter les conflits
 
     else:
-        print("Erreur : le fichier audio n'a pas été trouvé après le téléchargement.") 
+        print("Erreur : le fichier audio n'a pas été trouvé après le téléchargement.")
 
 
 async def check_vocal_connect(server_id, vocal_id):
