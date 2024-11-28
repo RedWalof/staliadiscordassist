@@ -32,12 +32,29 @@ async def on_ready():
     if not boucle.is_running():
         boucle.start()  # Démarre la boucle si elle n'est pas déjà en cours
 
+
+async def notify_support_channel(user, channel_id):
+    # Récupérer le salon par son ID
+    channel = client.get_channel(channel_id)
+    
+    if channel is None:  # Si le salon n'existe pas ou n'est pas trouvé
+        print(f"Erreur : Aucun salon trouvé avec l'ID {channel_id}.")
+        return
+    
+    try:
+        # Envoyer un message dans le salon
+        await channel.send(f"⚠️ {user.mention} attend dans le salon **Attente Support**.")
+        print(f"Message envoyé dans le salon {channel.name} ({channel.id}) pour {user.name}.")
+    except Exception as e:
+        print(f"Erreur lors de l'envoi du message dans le salon {channel_id}: {e}")
+
 # Fonction pour déconnecter le bot du canal vocal
 async def leave():
     for vc in client.voice_clients:
         if vc.is_connected():
             await vc.disconnect()
             print(f"Déconnecté du salon vocal : {vc.channel.name}")
+         
 
 # Fonction pour se connecter à un salon vocal spécifique
 async def connect_voice(guild_id: int, id_vocal: int):
@@ -104,11 +121,13 @@ async def check_vocal_connect(server_id, vocal_id):
 async def on_voice_state_update(member, before, after):
     guild_id = 1179921122481938523  # ID du serveur
     id_vocal = 1267594360065884262  # ID du salon vocal
+    channel_id = 1311665052159442974
 
     if before.channel is None and after.channel is not None:  # L'utilisateur a rejoint un salon vocal
         print(f"{member.name} a rejoint le salon vocal.")
         result = await check_vocal_connect(guild_id, id_vocal)
         if not result:
+            await notify_support_channel(member, channel_id)
             await connect_voice(guild_id, id_vocal)
         else:
             await leave()
