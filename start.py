@@ -70,10 +70,12 @@ async def play_youtube(vc):
     # Vérifier si le fichier audio existe avant de tenter de le jouer
     if os.path.exists('audio.mp3'):
         # Lecture de l'audio dans le salon vocal
+        while vc.is_connected():
         vc.play(FFmpegPCMAudio('audio.mp3'), after=lambda e: print("Lecture terminée."))
         # Attendre que la lecture soit terminée
-        while vc.is_playing():
-            await asyncio.sleep(1)
+          while vc.is_playing():
+             await asyncio.sleep(1)
+            
 
         # Supprimer le fichier audio après la lecture
 
