@@ -36,6 +36,8 @@ async def on_ready():
 async def notify_support_channel(user, channel_id):
     # Récupérer le salon par son ID
     channel = client.get_channel(channel_id)
+    if member.bot:
+        return
     
     if channel is None:  # Si le salon n'existe pas ou n'est pas trouvé
         print(f"Erreur : Aucun salon trouvé avec l'ID {channel_id}.")
