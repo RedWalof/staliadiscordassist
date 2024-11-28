@@ -46,7 +46,7 @@ async def notify_support_channel(user, channel_id):
     try:
         # Envoyer un message dans le salon
         await channel.send(f"⚠️ {user.mention} attend dans le salon **Attente Support**.")
-        print(f"Message envoyé dans le salon {channel.name} ({channel.id}) pour {user.name}.")
+        print(f"Message envoyé dans le salon {channel.name} ({channel.id}) pour {user.name} @￣￣ STAFF ￣￣ .")
     except Exception as e:
         print(f"Erreur lors de l'envoi du message dans le salon {channel_id}: {e}")
 
@@ -129,8 +129,8 @@ async def on_voice_state_update(member, before, after):
         print(f"{member.name} a rejoint le salon vocal.")
         result = await check_vocal_connect(guild_id, id_vocal)
         if not result:
-            await notify_support_channel(member, channel_id)
             await connect_voice(guild_id, id_vocal)
+            await notify_support_channel(member, channel_id)
         else:
             await leave()
 
