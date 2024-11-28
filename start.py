@@ -45,8 +45,8 @@ async def notify_support_channel(user, channel_id):
     
     try:
         # Envoyer un message dans le salon
-        await channel.send(f"⚠️ {user.mention} attend dans le salon **Attente Support**.")
-        print(f"Message envoyé dans le salon {channel.name} ({channel.id}) pour {user.name} @￣￣ STAFF ￣￣ .")
+        await channel.send(f"⚠️ {user.mention} attend dans le salon **Attente Support**  @￣￣ STAFF ￣￣ .")
+        print(f"Message envoyé dans le salon {channel.name} ({channel.id}) pour {user.name}.")
     except Exception as e:
         print(f"Erreur lors de l'envoi du message dans le salon {channel_id}: {e}")
 
