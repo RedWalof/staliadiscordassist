@@ -121,9 +121,9 @@ async def check_vocal_connect(server_id, vocal_id):
 # Événement déclenché lorsqu'un utilisateur change d'état vocal
 @client.event
 async def on_voice_state_update(member, before, after):
-    guild_id = 1179921122481938523  # ID du serveur
-    id_vocal = 1267594360065884262  # ID du salon vocal
-    channel_id = 1311665052159442974
+    guild_id = 1339640495231602711  # ID du serveur
+    id_vocal = 1340090222460801104  # ID du salon vocal
+    channel_id = 1340396992035295242
 
     if before.channel is None and after.channel is not None:  # L'utilisateur a rejoint un salon vocal
         print(f"{member.name} a rejoint le salon vocal.")
