@@ -33,22 +33,25 @@ async def on_ready():
         boucle.start()  # Démarre la boucle si elle n'est pas déjà en cours
 
 
-async def notify_support_channel(user, channel_id):
-    # Récupérer le salon par son ID
-    channel = client.get_channel(channel_id)
-    if user.id == 1310305003453550622:
-        return
-    
-    if channel is None:  # Si le salon n'existe pas ou n'est pas trouvé
-        print(f"Erreur : Aucun salon trouvé avec l'ID {channel_id}.")
-        return
-    
-    try:
-        # Envoyer un message dans le salon
-        await channel.send(f"⚠️ {user.name} attend dans le salon **Attente Support**  <@&{1340090330745278565}> .")
-        print(f"Message envoyé dans le salon {channel.name} ({channel.id}) pour {user.name}.")
-    except Exception as e:
-        print(f"Erreur lors de l'envoi du message dans le salon {channel_id}: {e}")
+
+async def on_voice_state_update(member, before, after):
+    # Vérifie si le joueur rejoint le salon spécifique
+    if after.channel and after.channel.id == channel_id:
+        # Vérifie que le membre n'est pas celui à ignorer
+        if member.id == 1310305003453550622:
+            return
+
+        # Récupérer le salon texte
+        channel = client.get_channel(channel_id)
+        if channel:
+            try:
+                await channel.send(f"⚠️ {member.mention} attend dans le salon **Attente Support** <@&{1340090330745278565}>.")
+                print(f"Message envoyé dans {channel.name} ({channel.id}) pour {member.name}.")
+            except Exception as e:
+                print(f"Erreur lors de l'envoi du message : {e}")
+        else:
+            print(f"Erreur : Aucun salon texte trouvé avec l'ID {channel_id}.")
+
 
 # Fonction pour déconnecter le bot du canal vocal
 async def leave():
