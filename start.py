@@ -36,7 +36,7 @@ async def on_ready():
 
 async def on_voice_state_update(member, before, after):
     # Vérifie si le joueur rejoint le salon spécifique
-    if after.channel and after.channel.id == channel_id:
+    if after.channel and after.channel.id == id_vocal:
         # Vérifie que le membre n'est pas celui à ignorer
         if member.id == 1310305003453550622:
             return
