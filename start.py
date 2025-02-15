@@ -11,7 +11,7 @@ load_dotenv()
 # Variables d'environnement et paramètres
 TOKEN = os.getenv('Token_secret')
 PREFIX = "!"
-AUTHORIZED_SERVER_IDS = [1179921122481938523, 987654321098765432]
+AUTHORIZED_SERVER_IDS = [1339640495231602711]
 YOUTUBE_URL = 'https://www.youtube.com/watch?v=egPuGceJxg0'  # URL de la vidéo YouTube
 
 # Intentions du bot
