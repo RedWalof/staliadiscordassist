@@ -34,23 +34,7 @@ async def on_ready():
 
 
 
-async def on_voice_state_update(member, before, after):
-    # Vérifie si le joueur rejoint le salon spécifique
-    if after.channel and after.channel.id == id_vocal:
-        # Vérifie que le membre n'est pas celui à ignorer
-        if member.id == 1310305003453550622:
-            return
 
-        # Récupérer le salon texte
-        channel = client.get_channel(channel_id)
-        if channel:
-            try:
-                await channel.send(f"⚠️ {member.mention} attend dans le salon **Attente Support** <@&{1340090330745278565}>.")
-                print(f"Message envoyé dans {channel.name} ({channel.id}) pour {member.name}.")
-            except Exception as e:
-                print(f"Erreur lors de l'envoi du message : {e}")
-        else:
-            print(f"Erreur : Aucun salon texte trouvé avec l'ID {channel_id}.")
 
 
 # Fonction pour déconnecter le bot du canal vocal
@@ -70,12 +54,44 @@ async def connect_voice(guild_id: int, id_vocal: int):
         if voice_channel:
             if voice_client and voice_client.channel.id == id_vocal:
                 return 'Bot déjà connecté au salon vocal'
+                 # Vérifie si le joueur rejoint le salon spécifique
+    if after.channel and after.channel.id == id_vocal:
+        # Vérifie que le membre n'est pas celui à ignorer
+        if member.id == 1310305003453550622:
+            return
+
+        # Récupérer le salon texte
+        channel = client.get_channel(channel_id)
+        if channel:
+            try:
+                await channel.send(f"⚠️ {member.mention} attend dans le salon **Attente Support** <@&{1340090330745278565}>.")
+                print(f"Message envoyé dans {channel.name} ({channel.id}) pour {member.name}.")
+            except Exception as e:
+                print(f"Erreur lors de l'envoi du message : {e}")
+        else:
+            print(f"Erreur : Aucun salon texte trouvé avec l'ID {channel_id}.")
             else:
                 await leave()
                 vc = await voice_channel.connect()
                 await asyncio.sleep(2)
                 await play_youtube(vc)
                 print(f"Connecté au salon vocal {voice_channel.name} sur le serveur {guild.name}.")
+                    # Vérifie si le joueur rejoint le salon spécifique
+    if after.channel and after.channel.id == id_vocal:
+        # Vérifie que le membre n'est pas celui à ignorer
+        if member.id == 1310305003453550622:
+            return
+
+        # Récupérer le salon texte
+        channel = client.get_channel(channel_id)
+        if channel:
+            try:
+                await channel.send(f"⚠️ {member.mention} attend dans le salon **Attente Support** <@&{1340090330745278565}>.")
+                print(f"Message envoyé dans {channel.name} ({channel.id}) pour {member.name}.")
+            except Exception as e:
+                print(f"Erreur lors de l'envoi du message : {e}")
+        else:
+            print(f"Erreur : Aucun salon texte trouvé avec l'ID {channel_id}.")
         else:
             print(f"Salon vocal avec l'ID '{id_vocal}' introuvable.")
     else:
